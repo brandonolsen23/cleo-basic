@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "cleo-basic"
+version = "0.1.0"
+description = "Cleo local-first data stack"
+authors = ["Brandon Olsen <brandon@example.com>"]
+readme = "README.md"
+packages = [
+    { include = "cleo_core", from = "python" },
+    { include = "cleo_address", from = "python" },
+    { include = "cleo_realtrack", from = "python" },
+    { include = "cleo_brands", from = "python" },
+    { include = "cleo_refinement", from = "python" },
+    { include = "cleo_analysis", from = "python" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+playwright = "^1.43.0"
+pydantic = "^2.7.0"
+beautifulsoup4 = "^4.12.0"
+lxml = "^5.2.0"
+orjson = "^3.10.0"
+pandas = "^2.2.0"
+duckdb = "^0.10.0"
+fastapi = "^0.110.0"
+uvicorn = { version = "^0.29.0", extras = ["standard"] }
+geopy = "^2.4.0"
+python-dotenv = "^1.0.1"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.1.0"
+ruff = "^0.4.0"
+
+[build-system]
+requires = ["poetry-core>=1.8.0"]
+build-backend = "poetry.core.masonry.api"

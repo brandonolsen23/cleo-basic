@@ -1,0 +1,13 @@
+.DS_Store
+.env
+__pycache__/
+poetry.lock
+
+data/raw_html/*
+!data/raw_html/.gitkeep
+
+data/raw_assets/*
+!data/raw_assets/.gitkeep
+
+data/state/*
+!data/state/.gitkeep

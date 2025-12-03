@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8" /><link rel="stylesheet" type="text/css" href="https://realtrack.cachefly.net/css/common.css" /><link rel="icon" type="image/x-icon" href="https://realtrack.cachefly.net/favicon.ico" /><title>RealTrack Inc &nbsp;| &nbsp;tracking the ici real estate market</title><script type="text/javascript" src="https://realtrack.cachefly.net/js/jquery.min.js"></script>
+<script type='text/javascript' src="https://realtrack.cachefly.net/js/jquery.autocomplete.min.js"></script>
+<script type="text/javascript" src="https://realtrack.cachefly.net/js/sampleInputs.js"></script>
+<script type="text/javascript" src="https://realtrack.cachefly.net/js/tooltips/jquery.bt.js"></script>
+<!--[if IE]><script type="text/javascript" src="https://realtrack.cachefly.net/js/tooltips/excanvas.js"></script><![endif]-->
+<script type="text/javascript">//<![CDATA[
+$().ready(function() {
+	function findValueCallback(event, data, formatted) {
+		$("<li>").html( !data ? "No match!" : "Selected: " + formatted).appendTo("#result");
+	}
+	function formatItem(row) {
+		return row[0] + " (<strong>id: " + row[1] + "</strong>)";
+	}
+	function formatResult(row) {
+		return row[0].replace(/(<.+?>)/gi, '');
+	}
+	$("#locList").autocomplete("/php/acdata.php", {
+		minChars: 1,
+		max: 100,
+		matchContains: true,
+		selectFirst: false,
+		width: 265,
+		scrollHeight: 200
+	});
+	$(":text, textarea").result(findValueCallback).next().click(function() {
+		$(this).prev().search();
+	});
+	$("#locList").result(function(event, data, formatted) {
+		if (data)
+			$(this).parent().next().find("input").val(data[1]);
+	});
+});
+$(function() {
+      $('#locList').example('all regions & municipalities');
+      $('#street').example('street name, address or postal code');
+      $('#keyword').example('property type keyword');
+      $('#parties').example('vendor or purchaser\'s name');
+      $('#agents').example('broker or agent\'s name');
+      $('#minamt').example('500,000');
+      $('#maxamt').example('no limit');
+});
+$(function() {
+	$('[title]').bt();
+});
+//]]></script></head><body><div id="headerNav"><a href="?page=home">REALTRACK</a> | <a href="?page=search">Search ICIcomps</a>
+  |  <a href="?page=signout">Logout</a></div><form action="?page=results" method="post"><table border="0" cellspacing="0" cellpadding="0" class="formtable"><tr><td class="formlabel">Region:</td><td><span><input type="text" value="" size="37" id="locList" title="Enter the first few letters of a location's name and then make a selection from the drop-down list." /></span><span><input type="hidden" name="sf1" /></span></td></tr><tr><td class="formlabel">Street:</td><td><input type="text" name="sf2" value="" size="37" id="street" title="When specifying a street name or address, omit the street type and direction." /></td></tr><tr><td class="formlabel">Type:</td><td><select name="sf3"><option value="" selected="selected">All Property Types</option><option value="multiRes">Multi Residential</option><option value="indBldg">Industrial Buildings</option><option value="officeBldg">Office Buildings</option><option value="retailBldg">Retail Buildings</option><option value="hotelMotel">Hotels/Motels</option><option value="restaurantBar">Restaurants/Bars</option><option value="otherImprv">Other Buildings</option><option value="comIndLand">Com/Ind Land</option><option value="resLand">Res/Rural Land</option><option value="farmLand">Farms/Farmland</option><option value="otherLand">Other Land</option></select></td></tr><tr><td class="formlabel">Keyword:</td><td><input type="text" name="sf4" value="" size="30" id="keyword" title="Narrow your search to a specific property type by entering a keyword such as: retirement, gas, medical, school, golf, church, condo, student, hall, dealership etc" /></td></tr><tr><td class="formlabel">Period:</td><td><select name="startmo"><option value="1/1"  selected="selected">Jan 1</option><option value="2/1">Feb 1</option><option value="3/1">Mar 1</option><option value="4/1">Apr 1</option><option value="5/1">May 1</option><option value="6/1">Jun 1</option><option value="7/1">Jul 1</option><option value="8/1">Aug 1</option><option value="9/1">Sep 1</option><option value="10/1">Oct 1</option><option value="11/1">Nov 1</option><option value="12/1">Dec 1</option></select><select name="startyr"><option value="1996">96</option><option value="1997">97</option><option value="1998">98</option><option value="1999">99</option><option value="2000">00</option><option value="2001">01</option><option value="2002">02</option><option value="2003">03</option><option value="2004">04</option><option value="2005">05</option><option value="2006">06</option><option value="2007">07</option><option value="2008">08</option><option value="2009">09</option><option value="2010">10</option><option value="2011">11</option><option value="2012">12</option><option value="2013">13</option><option value="2014">14</option><option value="2015">15</option><option value="2016">16</option><option value="2017">17</option><option value="2018">18</option><option value="2019">19</option><option value="2020">20</option><option value="2021">21</option><option value="2022">22</option><option value="2023">23</option><option value="2024" selected="selected">24</option><option value="2025">25</option></select> to <select name="endmo"><option value="1/31">Jan 31</option><option value="2/28">Feb 28/9</option><option value="3/31">Mar 31</option><option value="4/30">Apr 30</option><option value="5/31">May 31</option><option value="6/30">Jun 30</option><option value="7/31">Jul 31</option><option value="8/31">Aug 31</option><option value="9/30">Sep 30</option><option value="10/31">Oct 31</option><option value="11/30">Nov 30</option><option value="12/31" selected="selected">Dec 31</option></select><select name="endyr"><option value="1996">96</option><option value="1997">97</option><option value="1998">98</option><option value="1999">99</option><option value="2000">00</option><option value="2001">01</option><option value="2002">02</option><option value="2003">03</option><option value="2004">04</option><option value="2005">05</option><option value="2006">06</option><option value="2007">07</option><option value="2008">08</option><option value="2009">09</option><option value="2010">10</option><option value="2011">11</option><option value="2012">12</option><option value="2013">13</option><option value="2014">14</option><option value="2015">15</option><option value="2016">16</option><option value="2017">17</option><option value="2018">18</option><option value="2019">19</option><option value="2020">20</option><option value="2021">21</option><option value="2022">22</option><option value="2023">23</option><option value="2024">24</option><option value="2025" selected="selected">25</option></select></td></tr><tr><td class="formlabel">$amount:</td><td><input type="text" name="minamt" value="" size="10" id="minamt" title="Must be at least 500,000" />min <input type="text" name="maxamt" value="" size="10" id="maxamt" />max</td></tr><tr><td class="formlabel">Parties:</td><td><input type="text" name="sf7" value="" size="30" id="parties" title="Hint: in addition to party names, you may also search by street address or postal code." /></td></tr><tr><td class="formlabel">Broker/Agent:</td><td><input type="text" name="sf8" value="" size="30" id="agents" title="Hint: to limit your search to transactions which involved an agent, type an asterisk (*) here."/></td></tr><tr><td class="formlabel">Sort Order:</td><td><select name="sort1"><option value="">1st Sort</option><option value="regDate" selected="selected">Date</option><option value="amount">Amount</option><option value="region">Region</option><option value="munic">City/Town</option><option value="street">Street</option></select><select name="order1"><option value="ascending">+</option><option value="descending" selected="selected">-</option></select><select name="sort2"><option value="amount" selected="selected">2nd Sort</option><option value="regDate">Date</option><option value="amount">Amount</option><option value="region">Region</option><option value="munic">City/Town</option><option value="street">Street</option></select><select name="order2"><option value="ascending">+</option><option value="descending" selected="selected">-</option></select></td></tr><tr><td class="formlabel">Display:</td><td><select name="sf9"><option value="5">5 records</option><option value="10">10 records</option><option value="15" selected="selected">15 records</option><option value="20">20 records</option><option value="25">25 records</option><option value="50">50 records</option></select> per page</td></tr><tr><td class="formlabel"></td><td><input type="submit" value="search" />&nbsp; <input type="button" value="clear form" onclick="parent.location='?page=search'" /></td></tr></table><input type="hidden" name="tabID" value="" /></form></body></html>
