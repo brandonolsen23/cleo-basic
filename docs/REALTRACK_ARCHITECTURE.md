@@ -1,15 +1,11 @@
 # RealTrack Ingestion Architecture (Plain-English)
 
-This diagram shows, step-by-step, how each RealTrack transaction moves from the website into our local files and finally into the structured data that the app will use. No coding knowledge required.
+This diagram shows, step-by-step, how each RealTrack transaction moves from the website into our local files and finally into the structured data that the app will use. No coding knowledge required. The scheduler node simply means "launchd or a manual CLI run kicks off the ingest around 9am, 11am, 2pm, and 4pm".
 
 ```mermaid
 flowchart TD
     subgraph A[1. Scheduler]
         S(launchd timer or manual run)
-        note right of S
-          This simply kicks off the ingest script
-          at 9am, 11am, 2pm, and 4pm.
-        end note
     end
 
     subgraph B[2. Per Search Page]
