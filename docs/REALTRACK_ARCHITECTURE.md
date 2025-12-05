@@ -9,39 +9,26 @@ flowchart TD
     end
 
     subgraph B[2. Per Search Page]
-        R[Open RealTrack results page
-(skip = 0, 50, 100...)]
-        E[Click "Export Page" link for the same skip
-(get postal code + building size table)]
-        L[Walk each row/detail in order
-(row 0 matches skip, row 1 matches skip+1...)]
-        D[Open the detail page
-(save HTML + photos/PDFs)]
-        X[Attach the export row info
-(postal code, building SF, etc.)]
-        U[Save everything + remember RT ID]
+        R[Open results page (skip=0/50/100)]
+        E[Click "Export Page" for same skip]
+        L[Walk each row/detail in order]
+        D[Open detail page, save HTML + photos]
+        X[Attach export row extras]
+        U[Save files + remember RT ID]
     end
 
     subgraph C[3. Local Storage]
-        H[Raw HTML files
- e.g. data/raw_html/RT195679.html]
-        A[Photos/PDFs + manifest
- data/raw_assets/RT195679/]
-        M[Summary JSONL with
- postal codes, sizes, prices]
-        I[Seen RT IDs list
-(so we never re-download)]
+        H[Raw HTML files (data/raw_html/...)]
+        A[Photos/PDFs + manifest (data/raw_assets/...)]
+        M[Summary JSONL (postal codes, sizes, prices)]
+        I[Seen RT IDs list (prevents re-downloads)]
     end
 
     subgraph D[4. Refinement]
-        SD[Split HTML into sections
- (addresses, parties, site, etc.)]
-        AN[Normalize addresses
-(shared Cleo address engine)]
-        PP[Parse parties (companies,
-contacts, phones, addresses)]
-        FO[Produce final facts
-(date, price, postal, building size...)]
+        SD[Split HTML into sections]
+        AN[Normalize addresses]
+        PP[Parse parties (companies, contacts, phones)]
+        FO[Produce final facts (date, price, postal, size)]
     end
 
     S --> R
